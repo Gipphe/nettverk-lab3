@@ -29,7 +29,7 @@ class CurrencyConverterTest {
         CurrencyConverter converter = new CurrencyConverter(curr);
 
         double result = converter.convert(Currency.NOK, Currency.USD, 10.5);
-        Assertions.assertEquals(1.36, result);
+        Assertions.assertEquals(1.365, result);
     }
 
     @Test
@@ -38,6 +38,6 @@ class CurrencyConverterTest {
         CurrencyConverter converter = new CurrencyConverter(curr);
 
         double result = converter.convert(Currency.NOK, Currency.GBP, 20);
-        Assertions.assertEquals(1.84, result);
+        Assertions.assertEquals(1.843971631205674, result);
     }
 }
