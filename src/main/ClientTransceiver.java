@@ -81,7 +81,7 @@ public class ClientTransceiver extends Thread {
                         break;
                 }
                 out.println(response);
-                System.out.println("I (main.TCPServer) [" + socket.getLocalAddress().getHostAddress() + ":" + serverPort + "] > " + response);
+                System.out.println("Response #" + id + " - [" + socket.getLocalAddress().getHostAddress() + ":" + serverPort + "] > " + response);
             }
             socket.close();
         } catch (IOException e) {
