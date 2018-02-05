@@ -87,6 +87,13 @@ public class TCPServer {
                     System.out.println("Client [" + clientAddress.getHostAddress() + ":" + clientPort + "] > " + receivedText);
                     String response;
                     switch (receivedText.toLowerCase()) {
+                        case "help":
+                            response = "Fungerer som følger:\n";
+                            response += "###FROM2TO\n";
+                            response += "hvor ### er mengden som skal konverteres,\n";
+                            response += "FROM er valutaen du konverterer fra,\n";
+                            response += "og TO er valutaen du konverterer til.";
+                            break;
                         case "hei":
                             response = "Well hello there.";
                             break;
