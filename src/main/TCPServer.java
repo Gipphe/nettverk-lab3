@@ -65,12 +65,12 @@ public class TCPServer {
     }
 
     static class ClientTransceiver extends Thread {
-        Socket socket;
+        private Socket socket;
+        private InetAddress clientAddress;
+        private CurrencyConverter converter;
+        private int serverPort;
+        private int clientPort;
         private String id;
-        InetAddress clientAddress;
-        int serverPort;
-        int clientPort;
-        CurrencyConverter converter;
 
         ClientTransceiver(String id, Socket socket, CurrencyConverter converter) {
             this.id = id;
