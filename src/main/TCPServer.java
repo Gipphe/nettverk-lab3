@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.*;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -49,10 +50,12 @@ public class TCPServer {
         System.out.println("TCPServer initializing...");
         System.out.println("Server addresses are: " + ips.toString());
 
+        int count = 0;
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             //noinspection InfiniteLoopStatement
             while (true) {
-                ClientServer clientServer = new TCPServer.ClientServer(serverSocket.accept(), converter);
+                count += 1;
+                ClientServer clientServer = new TCPServer.ClientServer(String.valueOf(count), serverSocket.accept(), converter);
                 clientServer.start();
             }
         } catch (IOException e) {
@@ -62,13 +65,15 @@ public class TCPServer {
     }
 
     static class ClientServer extends Thread {
+        private String id;
         Socket connectSocket;
         InetAddress clientAddress;
         int serverPort;
         int clientPort;
         CurrencyConverter converter;
 
-        ClientServer(Socket connectSocket, CurrencyConverter converter) {
+        ClientServer(String id, Socket connectSocket, CurrencyConverter converter) {
+            this.id = id;
             this.converter = converter;
             this.connectSocket = connectSocket;
             clientAddress = connectSocket.getInetAddress();
@@ -84,7 +89,7 @@ public class TCPServer {
                 String receivedText;
 
                 while (((receivedText = in.readLine()) != null)) {
-                    System.out.println("Client [" + clientAddress.getHostAddress() + ":" + clientPort + "] > " + receivedText);
+                    System.out.println("Client #" + id + " - [" + clientAddress.getHostAddress() + ":" + clientPort + "] > " + receivedText);
                     String response;
                     switch (receivedText.toLowerCase()) {
                         case "help":
