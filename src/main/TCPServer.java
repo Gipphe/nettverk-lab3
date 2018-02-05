@@ -66,7 +66,7 @@ public class TCPServer {
         }
     }
 
-    static class ClientTransceiver extends Thread {
+    private static class ClientTransceiver extends Thread {
         private Socket socket;
         private InetAddress clientAddress;
         private CurrencyConverter converter;
@@ -74,7 +74,7 @@ public class TCPServer {
         private int clientPort;
         private String id;
 
-        ClientTransceiver(String id, Socket socket, CurrencyConverter converter) {
+        private ClientTransceiver(String id, Socket socket, CurrencyConverter converter) {
             this.id = id;
             this.converter = converter;
             this.socket = socket;
@@ -148,10 +148,10 @@ public class TCPServer {
         }
 
         private static class Conversion {
-            Currency from;
-            Currency to;
-            double amount;
-            Conversion(String s) {
+            private Currency from;
+            private Currency to;
+            private double amount;
+            private Conversion(String s) {
                 s = s.toUpperCase();
                 Matcher matcher = Pattern.compile("(\\d+[.|,]?\\d*)(\\w+)2(\\w+)").matcher(s);
                 if (matcher.find()) {
