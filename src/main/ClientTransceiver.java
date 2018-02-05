@@ -71,8 +71,8 @@ public class ClientTransceiver extends Thread {
                                 double result = converter.convert(conversion.from, conversion.to, conversion.amount);
                                 System.out.println(result);
                                 response = String.valueOf(result);
-                            } catch (IllegalArgumentException e) {
-                                response = "Invalid currency: " + e.getMessage();
+                            } catch (InvalidCurrency e) {
+                                response = "Invalid currency: " + e.getCurrency();
                             }
                         } catch (Exception e) {
                             System.out.println(e.getMessage());

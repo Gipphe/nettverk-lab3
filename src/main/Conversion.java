@@ -4,9 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class Conversion {
-    Currency from;
-    Currency to;
-    double amount;
+    final Currency from;
+    final Currency to;
+    final double amount;
 
     Conversion(String s) {
         s = s.toUpperCase();
@@ -14,8 +14,20 @@ class Conversion {
         if (matcher.find()) {
             String correctedAmount = matcher.group(1).replace(',', '.');
             amount = Double.parseDouble(correctedAmount);
-            from = Currency.valueOf(matcher.group(2).toUpperCase());
-            to = Currency.valueOf(matcher.group(3).toUpperCase());
+            try {
+                from = Currency.valueOf(matcher.group(2).toUpperCase());
+            } catch (IllegalArgumentException e) {
+                throw new InvalidCurrency(e.getMessage(), matcher.group(2).toUpperCase());
+            }
+            try {
+                to = Currency.valueOf(matcher.group(3).toUpperCase());
+            } catch (IllegalArgumentException e) {
+                throw new InvalidCurrency(e.getMessage(), matcher.group(3).toUpperCase());
+            }
+        } else {
+            amount = 0.0;
+            from = null;
+            to = null;
         }
     }
 }
