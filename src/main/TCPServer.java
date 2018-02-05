@@ -27,7 +27,7 @@ public class TCPServer {
         }
         return null;
     }
-    TCPServer(int port) {
+    private TCPServer(int port) {
         HashMap<Currency, Double> currencies = CurrencyReader.read("currencies.csv");
         CurrencyConverter converter = new CurrencyConverter(currencies);
 
