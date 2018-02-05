@@ -65,8 +65,8 @@ public class TCPServer {
     }
 
     static class ClientTransceiver extends Thread {
+        Socket socket;
         private String id;
-        Socket connectSocket;
         InetAddress clientAddress;
         int serverPort;
         int clientPort;
@@ -75,16 +75,16 @@ public class TCPServer {
         ClientTransceiver(String id, Socket socket, CurrencyConverter converter) {
             this.id = id;
             this.converter = converter;
-            this.connectSocket = connectSocket;
-            clientAddress = connectSocket.getInetAddress();
-            clientPort = connectSocket.getPort();
-            serverPort = connectSocket.getLocalPort();
+            this.socket = socket;
+            clientAddress = socket.getInetAddress();
+            clientPort = socket.getPort();
+            serverPort = socket.getLocalPort();
         }
 
         public void run() {
             try (
-                    PrintWriter out = new PrintWriter(connectSocket.getOutputStream(), true);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(connectSocket.getInputStream()))
+                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))
                     ) {
                 String receivedText;
 
@@ -132,9 +132,9 @@ public class TCPServer {
                             break;
                     }
                     out.println(response);
-                    System.out.println("I (main.TCPServer) [" + connectSocket.getLocalAddress().getHostAddress() + ":" + serverPort + "] > " + response);
+                    System.out.println("I (main.TCPServer) [" + socket.getLocalAddress().getHostAddress() + ":" + serverPort + "] > " + response);
                 }
-                connectSocket.close();
+                socket.close();
             } catch (IOException e) {
                 System.out.println("Exception occurred when trying to communicate with the client " + clientAddress.getHostAddress());
                 System.out.println(e.getMessage());
