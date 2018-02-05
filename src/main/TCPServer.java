@@ -9,14 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TCPServer {
-    public static void main(String... args) {
-        if (args.length == 1) {
-            new TCPServer(Integer.parseInt(args[0]));
-        } else {
-            new TCPServer(5555);
-        }
-    }
-
     private static String extractAddress(String s) {
         Matcher m = Pattern.compile("^/(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})").matcher(s);
         if (m.find()) {
@@ -62,6 +54,11 @@ public class TCPServer {
         }
     }
 
+    public static void main(String... args) {
+        if (args.length == 1) {
+            new TCPServer(Integer.parseInt(args[0]));
+        } else {
+            new TCPServer(5555);
         }
     }
 }
