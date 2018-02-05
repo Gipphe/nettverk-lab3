@@ -36,8 +36,8 @@ public class TCPServer {
         try {
             Enumeration<NetworkInterface> enumerator = NetworkInterface.getNetworkInterfaces();
             while (enumerator.hasMoreElements()) {
-                NetworkInterface iface = enumerator.nextElement();
-                List<InterfaceAddress> addresses = iface.getInterfaceAddresses();
+                NetworkInterface networkInterface = enumerator.nextElement();
+                List<InterfaceAddress> addresses = networkInterface.getInterfaceAddresses();
                 for (InterfaceAddress address : addresses) {
                     String realAddress = extractAddress(address.toString());
                     if (realAddress != null) {
