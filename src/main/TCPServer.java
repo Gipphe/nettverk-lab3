@@ -55,8 +55,8 @@ public class TCPServer {
             //noinspection InfiniteLoopStatement
             while (true) {
                 count += 1;
-                ClientServer clientServer = new TCPServer.ClientServer(String.valueOf(count), serverSocket.accept(), converter);
-                clientServer.start();
+                ClientTransceiver clientTransceiver = new ClientTransceiver(String.valueOf(count), serverSocket.accept(), converter);
+                clientTransceiver.start();
             }
         } catch (IOException e) {
             System.out.println("Exception occurred when trying to listen on port " + port + " or listening for a connection");
@@ -64,7 +64,7 @@ public class TCPServer {
         }
     }
 
-    static class ClientServer extends Thread {
+    static class ClientTransceiver extends Thread {
         private String id;
         Socket connectSocket;
         InetAddress clientAddress;
@@ -72,7 +72,7 @@ public class TCPServer {
         int clientPort;
         CurrencyConverter converter;
 
-        ClientServer(String id, Socket connectSocket, CurrencyConverter converter) {
+        ClientTransceiver(String id, Socket socket, CurrencyConverter converter) {
             this.id = id;
             this.converter = converter;
             this.connectSocket = connectSocket;
