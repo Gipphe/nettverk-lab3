@@ -21,7 +21,7 @@ public class TCPServer {
         }
     }
     private static String extractAddress(String s) {
-        Matcher m = Pattern.compile("^\\/(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})").matcher(s);
+        Matcher m = Pattern.compile("^/(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})").matcher(s);
         if (m.find()) {
             return m.group(1);
         }
