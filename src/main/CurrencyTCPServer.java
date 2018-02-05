@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TCPServer {
+public class CurrencyTCPServer {
     private static String extractAddress(String s) {
         Matcher m = Pattern.compile("^/(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})").matcher(s);
         if (m.find()) {
@@ -38,12 +38,12 @@ public class TCPServer {
         return ips.toString();
     }
 
-    private TCPServer(int port) {
+    private CurrencyTCPServer(int port) {
         HashMap<Currency, Double> currencies = CurrencyReader.read("currencies.csv");
         CurrencyConverter converter = new CurrencyConverter(currencies);
 
         String ips = getComputerIps();
-        System.out.println("TCPServer initializing...");
+        System.out.println("CurrencyTCPServer initializing...");
         System.out.println("Server addresses are: " + ips);
 
         int count = 0;
@@ -62,9 +62,9 @@ public class TCPServer {
 
     public static void main(String... args) {
         if (args.length == 1) {
-            new TCPServer(Integer.parseInt(args[0]));
+            new CurrencyTCPServer(Integer.parseInt(args[0]));
         } else {
-            new TCPServer(5555);
+            new CurrencyTCPServer(5555);
         }
     }
 }
