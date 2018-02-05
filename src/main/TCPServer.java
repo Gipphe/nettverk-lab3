@@ -94,6 +94,12 @@ public class TCPServer {
                             response += "FROM er valutaen du konverterer fra,\n";
                             response += "og TO er valutaen du konverterer til.";
                             break;
+                        case "currencies":
+                        case "currency":
+                        case "curr":
+                            Currency[] currencies = Currency.values();
+                            response = Arrays.toString(currencies);
+                            break;
                         case "hei":
                             response = "Well hello there.";
                             break;
