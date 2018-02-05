@@ -17,10 +17,7 @@ public class TCPServer {
         return null;
     }
 
-    private TCPServer(int port) {
-        HashMap<Currency, Double> currencies = CurrencyReader.read("currencies.csv");
-        CurrencyConverter converter = new CurrencyConverter(currencies);
-
+    private static String getComputerIps() {
         StringBuilder ips = new StringBuilder();
         ips.append("\n");
         try {
@@ -37,8 +34,17 @@ public class TCPServer {
                 }
             }
         } catch (SocketException ignored) {}
+
+        return ips.toString();
+    }
+
+    private TCPServer(int port) {
+        HashMap<Currency, Double> currencies = CurrencyReader.read("currencies.csv");
+        CurrencyConverter converter = new CurrencyConverter(currencies);
+
+        String ips = getComputerIps();
         System.out.println("TCPServer initializing...");
-        System.out.println("Server addresses are: " + ips.toString());
+        System.out.println("Server addresses are: " + ips);
 
         int count = 0;
         try (ServerSocket serverSocket = new ServerSocket(port)) {
