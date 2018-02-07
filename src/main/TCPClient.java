@@ -82,6 +82,9 @@ public class TCPClient {
 
         hostPortNumber(); //Ask the user of the client for the port number to the server. Checks if its valid and gives "hostPortInt" a value.
 
+
+        try {
+
         Socket clientSocket = new Socket(hostIpAddress, hostPortInt);
 
         System.out.println("You are now connected to the server " + clientSocket.getInetAddress() + " through port number: " + clientSocket.getLocalPort());
@@ -117,6 +120,9 @@ public class TCPClient {
                     System.out.println("--------------------------------------------------" + "\n");
                 }
             }
+        } catch (Exception e) {
+            System.out.println("Could not connect to host");
         }
+    }
 
     }
