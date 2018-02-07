@@ -123,6 +123,15 @@ Once the user has entered the ipv4-address and a valid port, the client creates 
 connect to host. If unsuccesful, the application will return "Could not connect to host" and exit.
 If successful, the user will receive a console message (example below): 
 
-  "You are now connected to the server /xxx.xx.xxx.xx through port number: 49285"
-  "The client IP is xxx.xx.xxx.xxx and is using the local port: 49285"
+  *You are now connected to the server /xxx.xx.xxx.xx through port number: 49285*
+  _The client IP is xxx.xx.xxx.xxx and is using the local port: 49285_
 
+While the client is connected, the `keyboardInput` will catch what the user are typing, and the 
+`outboundToServer` sends the String `userinput` (which is equal to `keyboardInput.readline()`) to
+the server. The server then sends (through `serverInput`) a respons to the clients request.
+
+The client is using reg.ex (and also if-constraints) to display the respons from the server in a 
+user friendly matter. If the server respons is i.e "25.2323414", the user will be presented with:
+
+*You asked how much 500 JPY is in EUR.*
+_500 JPY is 25.2323414 EUR_
