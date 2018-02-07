@@ -42,10 +42,10 @@ public class ClientTransceiver extends Thread {
                 String response;
                 switch (receivedText.toLowerCase()) {
                     case "help":
-                        response = "Fungerer som følger:\n";
-                        response += "###FROM2TO\n";
-                        response += "hvor ### er mengden som skal konverteres,\n";
-                        response += "FROM er valutaen du konverterer fra,\n";
+                        response = "Fungerer som følger: ";
+                        response += "###FROM2TO ";
+                        response += "hvor ### er mengden som skal konverteres, ";
+                        response += "FROM er valutaen du konverterer fra, ";
                         response += "og TO er valutaen du konverterer til.";
                         break;
                     case "currencies":
