@@ -1,5 +1,25 @@
 # Nettverkslab N-3
-> Report
+> Report by: Jørgen Eide, Christoffer Arntzen, Victor Bakke and Jonas Iversen
+
+## What is a socket?
+
+A socket would allow different network software applications to communicate through a network. The technology would enable two (or more) computers to communicate, but also communication between local software applications is possible through a inter-process. 
+There are different types of sockets, but the main types are datagram socket, which uses UDP technology, and the stream socket, which uses the TCP technology:
+  In a datagram socket, each package is individually routed and sent/received. By using this type of socket the order of the packages     may not be reliable, and the package may also get lost in the transmission. The advantage is that the datagram socket uses less time     to process/send/receive the different packages. 
+
+  In a stream socket, there is a built-in guarantee that the packages are sent in order (package two would come after package one and     before package three). It also is very reliable when it comes to package losses. 
+
+So why would we use the datagram socket when the stream socket is so reliable? The reliability comes with a cost: time. Stream         socket use more time to send/receive and process the transmission. It is therefore important to use the to different sockets in the correct context. For time sensitive applications like VoIP, games, videostreams etc. the datagram socket (UDP) would have an advantage compared to stream socket as the demands for high speed transmission is present. Tasks like file transferring should use stream sockets, as you do not want files with content that are randomly ordered or/and missing.
+
+In this report, we would use most of our focus on the stream socket technology.
+
+## Transmission through a Transfer Control Protocol (TCP)-socket
+
+The following is a short description of what is occurring when establishing a TCP connection between to different network applications:
+1.	Server must be up and running (through a ServerSocket-object). It is specified what port number the transmission is running through.
+2.	The server must be listening – waiting for an incoming “client”.
+3.	The client then creates/instantiates a socket object, specifying the IP-address and the port number to communicate on.
+4.	Initial communication established, and the TCP-server creates a new socket where the client and the server can communicate. This      allows for several client to make contact with the server within the same time-period.  
 
 ## Application Layer protocol
 
@@ -64,3 +84,7 @@ The `ClientTransciever` communicates with the client, and interprets input
 received from the assigned client. If the input adheres to the conversion
 protocol's contract, it attempts to convert the currency amount, and replies
 with the resulting amount.
+
+## Cient
+
+The client 
