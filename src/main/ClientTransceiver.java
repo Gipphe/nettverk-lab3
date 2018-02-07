@@ -54,12 +54,6 @@ public class ClientTransceiver extends Thread {
                         Currency[] currencies = Currency.values();
                         response = Arrays.toString(currencies);
                         break;
-                    case "hei":
-                        response = "Well hello there.";
-                        break;
-                    case "hello there":
-                        response = "General Kenobi.";
-                        break;
                     default:
                         if (!isValidConversionString(receivedText)) {
                             response = "Invalid request.";
