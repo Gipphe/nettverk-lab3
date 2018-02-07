@@ -112,6 +112,17 @@ received from the assigned client. If the input adheres to the conversion
 protocol's contract, it attempts to convert the currency amount, and replies
 with the resulting amount.
 
-## Cient
+## Client
 
-The client 
+The client starts with a welcome message where the user can input a valid IPv4-address. 
+With the help of the `ipCheck` method, the user will not be able to continue before the 
+IP-address has a correct format (IPv4). Next, the client will ask the user for a port
+number. The `hostPortNumber`method makes sure that the user input is valid port (below 65536 etc.).
+
+Once the user has entered the ipv4-address and a valid port, the client creates a Socket and tries to
+connect to host. If unsuccesful, the application will return "Could not connect to host" and exit.
+If successful, the user will receive a console message (example below): 
+
+  "You are now connected to the server /xxx.xx.xxx.xx through port number: 49285"
+  "The client IP is xxx.xx.xxx.xxx and is using the local port: 49285"
+
